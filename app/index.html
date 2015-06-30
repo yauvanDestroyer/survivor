@@ -11,6 +11,26 @@
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="assets/app.css"/>
+
+
+    <link rel="shortcut icon" href="icons\favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="icons\apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons\apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons\apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons\apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons\apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons\apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons\apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons\apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons\apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="icons\android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons\favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons\favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons\favicon-16x16.png">
+    <link rel="manifest" href="icons\manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="icons\ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
   </head>
 
   <body ng-app="Survivor" layout="row" ng-controller="Sample">
@@ -25,7 +45,7 @@
 
     <md-list>
       <md-list-item ng-repeat="season in seasons">
-          <md-button ng-click="" ng-class="{'selected' : it === ul.selected }">
+          <md-button ng-click="display()" ng-class="{'selected' : it === ul.selected }">
             <!-- <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon> -->
             {{season.title}}
           </md-button>
@@ -48,7 +68,24 @@
       </md-button>
       <h1>Survivor</h1>
     </md-toolbar>
+    <div flex layout="column" tabIndex="0" role="main" class="md-whiteframe-z2">
 
+    </br>
+    </br>
+
+  <!--    <md-button class="" ng-click="openAuth()">Login Via Facebook</md-button> -->
+
+      <div layout="row" >
+        <div flex offset="10">
+          <img src="images\official1.jpg" class="md-card-image square-logo" alt="image caption">
+        </div>
+        <div flex offset="40">
+          <h2>{{seasonName}}</h2>
+          <p>This is Survivor</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 
     <script src="./bower_components/angular/angular.js"></script>
@@ -93,6 +130,22 @@
                     title: "sample season"
                   });
                 }
+
+                $scope.openAuth = function() {
+                  var ref = new Firebase("https://online-survivor.firebaseio.com");
+                  ref.authWithOAuthPopup("facebook", function(error, authData) {
+                    if (error) {
+                      console.log("Login Failed!", error);
+                    } else {
+                      console.log("Authenticated successfully with payload:", authData);
+                    }
+                  });
+                }
+
+                $scope.display = function() {
+                    $scope.seasonName = "survivor";
+                }
+
               }]);
 
     </script>

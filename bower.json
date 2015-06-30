@@ -16,5 +16,9 @@
   ],
   "dependencies": {
     "angular-material": "~0.10.0"
+  },
+  "devDependencies": {
+    "firebase": "~2.2.7",
+    "angularfire": "~1.1.2"
   }
 }
